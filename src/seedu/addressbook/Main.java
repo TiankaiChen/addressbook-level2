@@ -105,7 +105,8 @@ public class Main {
      */
     private CommandResult executeCommand(Command command)  {
         try {
-            command.setData(addressBook, lastShownList);
+            storage.test();
+        	command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;

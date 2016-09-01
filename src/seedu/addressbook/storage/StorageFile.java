@@ -140,6 +140,22 @@ public class StorageFile {
             throw new StorageOperationException("File contains illegal data values; data type constraints not met");
         }
     }
+    
+    public void test() throws StorageOperationException, IOException {
+        try (final Reader fileReader =
+                     new BufferedReader(new FileReader(path.toFile()))) {
+
+        /* Note: Here, we are using an exception to create the file if it is missing. However, we should minimize
+         * using exceptions to facilitate normal paths of execution. If we consider the missing file as a 'normal'
+         * situation (i.e. not truly exceptional) we should not use an exception to handle it.
+         */
+
+        // create empty file if not found
+        } catch (FileNotFoundException fnfe) {
+            throw new StorageOperationException("File does not exist");
+        }
+    }
+    
 
     public String getPath() {
         return path.toString();
