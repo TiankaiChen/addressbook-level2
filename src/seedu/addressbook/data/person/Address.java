@@ -12,7 +12,12 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    
+    private Block _block;
+    private Street _street;
+    private Unit _unit;
+    private PostalCode _postalcode;
+    
     private boolean isPrivate;
 
     /**
@@ -22,10 +27,21 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
+        
         if (!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = address;
+        String[] data = splitAddress(address);
+        _block = new Block(data[0]);
+        _street = new Street(data[1]);
+        _unit = new Unit(data[2]);
+        _postalcode = new PostalCode(data[3]);
+        
+    }
+    
+    private String[] splitAddress(String address){
+    	final String[] split = address.trim().split(", ");
+    	return split;
     }
 
     /**
@@ -37,18 +53,22 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return _block.toString() + ", " + _street.toString() + ", " + _unit.toString() + ", " + _postalcode.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this._block.equals(((Address) other)._block)
+                && this._street.equals(((Address) other)._street)
+                && this._unit.equals(((Address) other)._unit)
+                && this._postalcode.equals(((Address) other)._postalcode)); // state check
     }
 
     @Override
     public int hashCode() {
+    	String value = this.toString();
         return value.hashCode();
     }
 
