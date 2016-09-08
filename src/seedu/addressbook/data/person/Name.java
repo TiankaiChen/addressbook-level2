@@ -71,7 +71,14 @@ public class Name {
     	 if(other == null){
     		 return false;
     	 }
- 	 
+    	 
+    	 //test for different case
+    	 String test_other = other.fullName.toLowerCase();
+    	 String test_local = this.fullName.toLowerCase();
+    	 if(test_other != test_local){
+    		 return false;
+    	 }
+    	 
     	 return true;
      }
     
