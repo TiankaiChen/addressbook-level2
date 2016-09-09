@@ -3,7 +3,9 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a Person's name in the address book.
@@ -76,6 +78,23 @@ public class Name {
     	 String test_other = other.fullName.toLowerCase();
     	 String test_local = this.fullName.toLowerCase();
     	 if(test_other != test_local){
+    		 return false;
+    	 }
+    	 
+    	 //test for different order
+    	 final Set<Object> testSet = new HashSet<>();
+    	 for(String i: (test_other.split(" "))){
+    		 testSet.add(i);
+    	 }
+    	 int count = 0;
+    	 int total = testSet.size();
+    	 for(String i: (test_other.split(" "))){
+    		 if(!testSet.add(i)){
+    			 count++;
+    		 }
+    	 }
+    	 
+    	 if(count != total){
     		 return false;
     	 }
     	 
