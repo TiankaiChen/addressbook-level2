@@ -81,7 +81,7 @@ public class Name {
     	 
     	 //test for different order
     	 final Set<Object> testSet = new HashSet<>();
-    	 for(String i: (test_other.split(" "))){
+    	 for(String i: (test_local.split(" "))){
     		 testSet.add(i);
     	 }
     	 int count = 0;
