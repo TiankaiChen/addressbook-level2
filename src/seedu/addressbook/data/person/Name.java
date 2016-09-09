@@ -79,6 +79,23 @@ public class Name {
     		 return false;
     	 }
     	 
+    	 //test for different order
+    	 final Set<Object> testSet = new HashSet<>();
+    	 for(String i: (test_other.split(" "))){
+    		 testSet.add(i);
+    	 }
+    	 int count = 0;
+    	 int total = testSet.size();
+    	 for(String i: (test_other.split(" "))){
+    		 if(!testSet.add(i)){
+    			 count++;
+    		 }
+    	 }
+    	 
+    	 if(count != total){
+    		 return false;
+    	 }
+    	 
     	 return true;
      }
     
