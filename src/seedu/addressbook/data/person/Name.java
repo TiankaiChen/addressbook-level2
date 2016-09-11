@@ -74,14 +74,10 @@ public class Name {
     		 return false;
     	 }
     	 
-    	 //test for different case
     	 String test_other = other.fullName.toLowerCase();
     	 String test_local = this.fullName.toLowerCase();
-    	 if(test_other != test_local){
-    		 return false;
-    	 }
     	 
-    	 //test for different order
+    	 //test for different order and different case
     	 final Set<Object> testSet = new HashSet<>();
     	 for(String i: (test_local.split(" "))){
     		 testSet.add(i);
@@ -93,7 +89,6 @@ public class Name {
     			 count++;
     		 }
     	 }
-    	 
     	 if(count != total){
     		 return false;
     	 }
